@@ -3,10 +3,10 @@ require('dotenv').config();
 
 function generateToken(username) {
   return jwt.sign(
-    username,
+    {username},
     process.env.TOKEN_SECRET,
     {
-      expiresIn: '1800s',
+      expiresIn: 1000*60*60,
       algorithm: 'HS256'  
     }
     )
