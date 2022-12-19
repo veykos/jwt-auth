@@ -9,7 +9,10 @@ function Signup() {
   function handleClick(e) {
     e.preventDefault()
     console.log('Clicked')
-    axios.post('http://localhost:8000/auth/signup', {username,password})
+    axios.post(
+      'http://localhost:8000/auth/signup',
+      {username,password}
+      )
     .then(res => console.log(res))
     .catch(err => console.log(err))
   }

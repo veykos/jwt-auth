@@ -15,7 +15,7 @@ router.get('/users', (req,res,next) => {
   )
 })
 
-router.get('/signup', (req,res,next) => {
+router.post('/signup', (req,res,next) => {
   const {username,password} = req.body
   const salt = bcrypt.genSaltSync(10)
   const hashedPass = bcrypt.hashSync(password, salt)
@@ -23,10 +23,9 @@ router.get('/signup', (req,res,next) => {
     `INSERT INTO users (username, password) VALUES ('${username}', '${hashedPass}')`,
     (err,result) => {
       if (err) return console.log(err)
-      res.json({username,hashedPass})
+      res.status(204)
     }
   )
-  
 })
 
 
