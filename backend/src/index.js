@@ -6,8 +6,13 @@ const app = require('./app');
 const authRouter = require('./authRoutes/authRouter')
 const PORT = process.env.PORT || 8000;
 
+const corsOptions = {
+  origin: true,
+  credentials: true
+}
+
 app.use(express.json())
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(cookieParser())
 
 app.use('/auth', authRouter)

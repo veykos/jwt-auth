@@ -33,8 +33,9 @@ router.post('/login', (req,res) => {
         const token = generateToken(username)
         return res
           .cookie("access_token", token, {
-            httpOnly:true,
-            secure: true
+            httpOnly:false,
+            secure: true,
+            sameSite: "none"
           })
           .status(200)
           .json({message: 'Logged in succesfully'})

@@ -9,12 +9,14 @@ function Login() {
   function handleClick(e) {
     e.preventDefault()
     const reqBody = {username, password}
-    axios.post('http://localhost:8000/auth/login', reqBody)
+    axios.post('http://localhost:8000/auth/login', reqBody, {withCredentials: true})
     .then(res => {
-      
+      console.log('have response')
+      console.log(res)
     })
     .catch(err => console.log(err))
   }
+  console.log(document.cookie)
 
   return (
     <div>
