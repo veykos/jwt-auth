@@ -1,4 +1,7 @@
 const router = require('express').Router();
+const connection = require('../db')
+const jwt = require('jsonwebtoken')
+
 
 router.post('/login', (req,res,next) => {
   res.send('hello')
