@@ -3,7 +3,7 @@ const connection = require('../db')
 const jwt = require('jsonwebtoken')
 const generateToken = require('../util/authFunctions')
 const bcrypt = require('bcryptjs');
-const e = require('express');
+
 
 
 router.get('/users', (req,res,next) => {
@@ -24,16 +24,22 @@ router.post('/login', (req,res) => {
     (err,result) => {
       if (err) return console.log(err)
       if (result.length === 0) {
-        res.status(404).json({error: 'No such user found'})
+        return res.status(404).json({error: 'No such user found'})
       }
       const {username,password} = result[0]
       const doesPasswordMatchHash = bcrypt.compareSync(passwordFromBody, password)
       console.log(doesPasswordMatchHash)
       if (doesPasswordMatchHash) {
         const token = generateToken(username)
-        res.json(token)
+        return res
+          .cookie("access_token", token, {
+            httpOnly:true,
+            secure: true
+          })
+          .status(200)
+          .json({message: 'Logged in succesfully'})
       } else {
-        res.status(404).json({error: 'Password incorrect'})
+        return res.status(404).json({error: 'Password incorrect'})
       }
     }
   )
