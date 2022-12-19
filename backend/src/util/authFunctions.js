@@ -12,5 +12,9 @@ function generateToken(username) {
     )
 }
 
+function checkToken(token) {
+  return jwt.verify(token,process.env.TOKEN_SECRET)
+}
 
-module.exports = generateToken;
+
+module.exports = {generateToken, checkToken};
