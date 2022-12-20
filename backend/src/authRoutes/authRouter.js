@@ -104,7 +104,7 @@ router.post("/signup", (req, res) => {
         console.log(err)
         return res.sendStatus(500)
       }; // log error and return early
-      res.status(204); // send HTTP status code 204 (No Content)
+      res.sendStatus(204); // send HTTP status code 204 (No Content)
     }
   );
 });

@@ -19,8 +19,9 @@ function Signup() {
       )
     .then(res => {
       setResponse(res)
+      console.log(res)
       // we get the response back and if it's 204 which means OK we navigate to the login page
-      if (res.response.status === 204) return navigate('/login')
+      if (res.status === 204) return navigate('/login')
     })
     .catch(err => {
       // if we get an error we save it in a state and use it later to display to the user
